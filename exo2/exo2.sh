@@ -8,3 +8,14 @@ API_URL='https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix-de
 #using curl commands to get the data from the API in silent mode (-s) the silent mode is used here because i don't want to display the progress meter or error messages.
 JSON_DATA=$(curl -s "$API_URL")
 
+##todo2 : check if the curl command is successful
+# Conditional for verify if the curl is not empty and if it's not empty we can continue the script. 
+if [ -n "$JSON_DATA" ]; then
+    echo "success"
+else
+    echo " failed"
+    exit 1
+fi
+
+
+
