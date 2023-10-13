@@ -63,24 +63,26 @@ uasort($sortedResults, function ($a, $b) {
 });var_dump($sortedResults);
 //!TODO 7:  Display the sorted results  
 foreach ($sortedResults as $region => $station) {
-    echo "$region";
+    echo "$region :\n";
     if (!is_null($station['SP95'])) {
-        echo "  SP95 : " . $station['SP95'] . " / {$station['adresse']} {$station['ville']}";
+        echo "  SP95 : " . $station['SP95'] . "€ / {$station['adresse']} {$station['ville']}\n";
     } else {
-        echo "  SP95 : no data ";
+        echo "  SP95 : Données non disponibles\n";
     }
-    if (!is_null($station['SP98'])) {
-        echo "  SP98 : " . $station['SP98'] . "/ {$station['adresse']} {$station['ville']}";
-    } else {
-        echo "  SP98 : no data";
-    }
-    if (!is_null($station['Gazole'])) {
-        echo "  Gazole : " . $station['Gazole'] . "/ {$station['adresse']} {$station['ville']}";
-    } else {
-        echo "  Gazole : No data";
 
+if (!is_null($station['SP98'])) {
+    echo "  SP98 : " . $station['SP98'] . "€ / {$station['adresse']} {$station['ville']}\n";
+}    else {
+        echo "  SP98 : Données non disponibles\n";
+    }
+
+    if (!is_null($station['Gazole'])) {
+        echo "  Gazole : " . $station['Gazole'] . "€ / {$station['adresse']} {$station['ville']}\n";
+    } else {
+        echo "  Gazole : Données non disponibles\n";
     }
 }
+
 ?>
     
     
