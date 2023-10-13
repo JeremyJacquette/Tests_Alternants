@@ -6,8 +6,30 @@ $API_URL = 'https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix
 //!TODO 2: Get the data from the API
 //Use file_get_contents() to get the data from the API
 $response = file_get_contents($API_URL);
-
+//decode the JSON string into an array
+$data = json_decode($response, true);
+$results = $data["results"];
+$sortedResults = [];
 //!TODO 3:  foreach result, sort by region 
+foreach ($results as $result) {
+    $region = $result['region'];
+    $city = $result['ville'];
+    $address = $result['adresse'];
+    //if the region is not set in the sortedResults array, set it
+    if (!isset($sortedResults[$region])) {
+        $sortedResults[$region] = [
+            'ville' => $city,
+            'adresse' => $address,
+            //set the prices to null for now
+            'SP95' => null,
+            'SP98' => null,
+            'Gazole' => null,
+        ];
+    }
+
+}
+
+
 //!TODO 4:  Sort the regions by the lowest price of SP98   
 //!TODO 5:  Sort the regions by the lowest price of SP95
 //!TODO 6:  Sort the regions by the lowest price of Gazole
