@@ -1,4 +1,5 @@
 <?php
+
 //!TODO 1:  Define the API endpoint
 //Define the API endpoint as a constant
 $API_URL = 'https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix-des-carburants-en-france-flux-instantane-v2/records?select=adresse,region,sp95_prix,sp98_prix,gazole_prix,ville&limit=100';
@@ -6,6 +7,7 @@ $API_URL = 'https://data.economie.gouv.fr/api/explore/v2.1/catalog/datasets/prix
 //!TODO 2: Get the data from the API
 //Use file_get_contents() to get the data from the API
 $response = file_get_contents($API_URL);
+
 //decode the JSON string into an array of results
 $data = json_decode($response, true);
 $results = $data["results"];
