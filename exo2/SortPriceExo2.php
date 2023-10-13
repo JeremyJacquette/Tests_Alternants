@@ -62,3 +62,18 @@ uasort($sortedResults, function ($a, $b) {
     }
 });var_dump($sortedResults);
 //!TODO 7:  Display the sorted results  
+foreach ($sortedResults as $region => $station) {
+    echo "$region";
+    if (!is_null($station['SP95'])) {
+        echo "  SP95 : " . $station['SP95'] . " / {$station['adresse']} {$station['ville']}";
+    } else {
+        echo "  SP95 : no data ";
+    }
+}
+?>
+    
+    
+    
+    
+    
+    
