@@ -37,31 +37,23 @@ foreach ($results as $result) {
 //!TODO 4:  Sort the regions by the lowest price of SP95 
 //i used uasort() to sort the array by the lowest price of SP95 documentation here :https://www.php.net/manual/fr/function.uasort.php
 uasort($sortedResults, function ($a, $b) {
-    //if the price is not set, set it to PHP_FLOAT_MAX
     $aMin95 = $a['SP95'] ?? PHP_FLOAT_MAX;
     $bMin95 = $b['SP95'] ?? PHP_FLOAT_MAX;
-    //if the price is not the same, sort the array
-    if ($aMin95 !== $bMin95) {
-        return $aMin95 <=> $bMin95;
-    }
-});var_dump($sortedResults);
-//!TODO 5:  Sort the regions by the lowest price of SP98
-uasort($sortedResults, function ($a, $b) {
     $aMin98 = $a['SP98'] ?? PHP_FLOAT_MAX;
     $bMin98 = $b['SP98'] ?? PHP_FLOAT_MAX;
-    if ($aMin98 !== $bMin98) {
-        return $aMin98 <=> $bMin98;
-    }
-});var_dump($sortedResults);
-//!TODO 6:  Sort the regions by the lowest price of Gazole
-uasort($sortedResults, function ($a, $b) {
     $aMinGaz = $a['Gazole'] ?? PHP_FLOAT_MAX;
     $bMinGaz = $b['Gazole'] ?? PHP_FLOAT_MAX;
-    if ($aMinGaz !== $bMinGaz) {
+
+    if ($aMin95 !== $bMin95) {
+        return $aMin95 <=> $bMin95;
+    } elseif ($aMin98 !== $bMin98) {
+        return $aMin98 <=> $bMin98;
+    } else {
         return $aMinGaz <=> $bMinGaz;
     }
-});var_dump($sortedResults);
+});
 //!TODO 7:  Display the sorted results  
+
 foreach ($sortedResults as $region => $station) {
     echo "$region :\n";
     if (!is_null($station['SP95'])) {
