@@ -69,6 +69,17 @@ foreach ($sortedResults as $region => $station) {
     } else {
         echo "  SP95 : no data ";
     }
+    if (!is_null($station['SP98'])) {
+        echo "  SP98 : " . $station['SP98'] . "/ {$station['adresse']} {$station['ville']}";
+    } else {
+        echo "  SP98 : no data";
+    }
+    if (!is_null($station['Gazole'])) {
+        echo "  Gazole : " . $station['Gazole'] . "/ {$station['adresse']} {$station['ville']}";
+    } else {
+        echo "  Gazole : No data";
+
+    }
 }
 ?>
     
