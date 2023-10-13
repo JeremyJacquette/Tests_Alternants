@@ -36,8 +36,6 @@ if [ -n "$JSON_DATA" ]; then
 # done is used to end the while loop
   done <<< "$RESULTS"
 else
-# error message if the curl command is not successful
+    # Display an error message if the curl command is empty
   echo "Failed to retrieve data from the API."
 fi
-
-###todo4 : add algorithm to find the cheapest gas station
