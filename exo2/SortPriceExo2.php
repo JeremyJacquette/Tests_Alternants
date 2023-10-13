@@ -16,24 +16,24 @@ foreach ($results as $result) {
     $region = $result['region'];
     $city = $result['ville'];
     $address = $result['adresse'];
-    $sp95 = $result['sp95_prix'];
-    $sp98 = $result['sp98_prix'];
-    $gazole = $result['gazole_prix'];
+   
     //if the region is not set in the sortedResults array, set it
     if (!isset($sortedResults[$region])) {
         $sortedResults[$region] = [
             'ville' => $city,
             'adresse' => $address,
-            'SP95' => $sp95,
-            'SP98' => $sp98,
-            'Gazole' => $gazole,
+            //set the price to null because we don't know yet(fix the bug)
+            'SP95' => NULL,
+            'SP98' => NULL,
+            'Gazole' => NULL,
         ];
     }
-    //if the region is set in the sortedResults array, check if the price is set
-    $sortedResults[$region]['SP95'] = isset($result['sp95_prix']);
-    $sortedResults[$region]['SP98'] = isset($result['sp98_prix']);
-    $sortedResults[$region]['Gazole'] = isset($result['gazole_prix']);
+    //if the region is set in the sortedResults array, check if the price is set and if not, set it
+    $sortedResults[$region]['SP95'] = isset($result['sp95_prix']) ? floatval($result['sp95_prix']) : null;
+    $sortedResults[$region]['SP98'] = isset($result['sp98_prix']) ? floatval($result['sp98_prix']) : null;
+    $sortedResults[$region]['Gazole'] = isset($result['gazole_prix']) ? floatval($result['gazole_prix']) : null;
 }
+
 //!TODO 4:  Sort the regions by the lowest price of SP95 
 //i used uasort() to sort the array by the lowest price of SP95 documentation here :https://www.php.net/manual/fr/function.uasort.php
 uasort($sortedResults, function ($a, $b) {
