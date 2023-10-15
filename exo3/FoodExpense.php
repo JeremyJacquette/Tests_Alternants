@@ -55,7 +55,7 @@ class FoodExpense
         return $this->participants;
     }
 
-    function get_type() {
+    function getType() {
         return 'FOOD';
     }
 }

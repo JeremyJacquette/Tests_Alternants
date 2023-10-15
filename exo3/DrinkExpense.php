@@ -56,7 +56,7 @@ class DrinkExpense
         return $this->le_payeur;
     }
 
-    function get_type() {
+    function getType() {
         return 'DRINK';
     }
 }

@@ -21,21 +21,22 @@ class User
         return $this->id;
     }
 
-    function getFirstname(): int
+    function getFirstname(): string
     {
         return $this->firstname;
     }
 
-    function getLastname(){
+    function getLastname(): string
+    {
         return $this->lastname;
     }
 
-    function getMailAddress()
+    function getMailAddress(): string
     {
         return $this->mailAddress;
     }
 
-    public function getFullname()
+    public function getFullname(): string
     {
         return $this->fullname;
     }
