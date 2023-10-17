@@ -26,6 +26,16 @@ class FoodExpense
         $this->le_payeur = $le_payeur;
         $this->participants = $participants;
     }
+    //that function is used for the balance
+    public function getUnitaryShared(): float
+    {
+        $totalParticipants = count($this->participants);
+        if ($totalParticipants > 0) {
+            return $this->amount / $totalParticipants;
+        } else {
+            return 0;
+        }
+    }
 
     public function getAmount(): float
     {
