@@ -36,6 +36,22 @@ class FoodExpense
             return 0;
         }
     }
+     //this is used for the balance between users
+    public function getUserShare(User $user): float
+    {
+        $totalParticipants = count($this->participants);
+
+        
+        if ($totalParticipants > 0) {
+            if (in_array($user, $this->participants)) {
+                return $this->amount / $totalParticipants;
+            } else {
+                return 0; 
+            }
+        } else {
+            return 0;
+        }
+    }
 
     public function getAmount(): float
     {
