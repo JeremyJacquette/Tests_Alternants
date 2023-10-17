@@ -27,31 +27,21 @@ class DrinkExpense
         $this->participants = $participants;
     }
      //that function is used for the balance
-    public function getUnitaryShared(): float
-    {
-        $totalParticipants = count($this->participants);
-        if ($totalParticipants > 0) {
-            return $this->amount / $totalParticipants;
-        } else {
-            return 0;
-        }
-    }
+     public function getUnitaryShared(): float
+     {
+         $totalParticipants = count($this->participants);
+         
+         return ($totalParticipants > 0) ? ($this->amount / $totalParticipants) : 0;
+     }
+
+    
     //this is used for the balance between users
     public function getUserShare(User $user): float
-    {
-        $totalParticipants = count($this->participants);
-
-        
-        if ($totalParticipants > 0) {
-            if (in_array($user, $this->participants)) {
-                return $this->amount / $totalParticipants;
-            } else {
-                return 0; 
-            }
-        } else {
-            return 0;
-        }
-    }
+{
+    $totalParticipants = count($this->participants);
+    
+    return ($totalParticipants > 0 && in_array($user, $this->participants)) ? ($this->amount / $totalParticipants) : 0;
+}
 
 
     /**
