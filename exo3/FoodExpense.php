@@ -8,7 +8,7 @@ class FoodExpense
 
     private \DateTime $happenedAt;
 
-    private User $le_payeur;
+    private User $thePayer;
 
     /**
      * @var array<User>
@@ -18,33 +18,72 @@ class FoodExpense
     /**
      * @param array <string, User> $participants
      */
-    public function __construct(float $amount, string $description, DateTime $happenedAt, User $le_payeur, array $participants)
+    public function __construct(float $amount, string $description, DateTime $happenedAt, User $thePayer, array $participants)
     {
         $this->amount = $amount;
         $this->description = $description;
         $this->happenedAt = $happenedAt;
-        $this->le_payeur = $le_payeur;
+        $this->thePayer = $thePayer;
         $this->participants = $participants;
     }
+  
+    /**
+     * I used here the same function as the DrinkExpense because it's the same logic
+     * I used ternary for lisibility
+     * @return float
+     */
+    public function getUnitaryShared(): float
+    {  
+         //this count the number of participants
+        $totalParticipants = count($this->participants);
+        //this return the amount of the expense divided by the number of participants
+        return ($totalParticipants > 0) ? ($this->amount / $totalParticipants) : 0;
+    }
 
+    /**
+     * I used here the same function as the DrinkExpense because it's the same logic
+     * I used ternary for lisibility 
+     * @param User $user
+     * @return float
+     */
+     public function getUserShare(User $user): float
+     {  
+        //this count the number of participants
+         $amountOfParticipants = count($this->participants);
+         //this return the amount of the expense divided by the number of participants
+         return ($amountOfParticipants > 0 && in_array($user, $this->participants)) ? ($this->amount / $amountOfParticipants) : 0;
+     }
+
+    /**
+     * @return float
+     */
     public function getAmount(): float
     {
         return $this->amount;
     }
 
+    /**
+     * @return string
+     */
     public function getDescription(): string
     {
         return $this->description;
     }
 
+    /**
+     * @return \DateTime
+     */
     public function getHappenedAt(): \DateTime
     {
         return $this->happenedAt;
     }
 
+    /**
+     * @return User
+     */
     public function getPayer(): User
     {
-        return $this->le_payeur;
+        return $this->thePayer;
     }
 
     /**
@@ -55,7 +94,10 @@ class FoodExpense
         return $this->participants;
     }
 
-    function get_type() {
+    /**
+     * @return void
+     */
+    function getType() {
         return 'FOOD';
     }
 }

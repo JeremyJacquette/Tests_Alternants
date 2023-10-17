@@ -32,7 +32,7 @@ try {
 
     foreach ($users as $user) {
         $balances[$user->getFullname()] = 0;
-    }
+    } 
 
     foreach ($expenses as $expense) {
         echo(sprintf(
